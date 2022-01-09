@@ -1,0 +1,12 @@
+data a;
+infile 'E:/SAS/6.15.txt';
+input y1 x1 x2 x3;
+proc corr;
+var y1 x1 x2 x3;
+run;
+proc reg;
+model y1 = x1 x2 x3/selection=rsquare;
+model y1 = x1 x2 x3/selection=cp adjrsq mse;
+model y1 = x1 x2 x3/selection=forward;
+model y1 = x1 x2 x3/selection=stepwise;
+run;

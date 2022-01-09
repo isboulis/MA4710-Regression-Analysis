@@ -1,0 +1,14 @@
+data a;
+infile 'E:\SAS\1.22.txt';
+input time hardness;
+proc plot;
+plot hardness*time;
+proc reg;
+model hardness=time / p clm cli lackfit;
+output out=new p=pred r=resid;
+proc plot data=new;
+plot resid*pred;
+proc univariate plot;
+var resid;
+PROC Means STD;
+run;

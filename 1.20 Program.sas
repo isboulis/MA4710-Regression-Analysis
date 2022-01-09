@@ -1,0 +1,13 @@
+data a;
+infile 'E:\SAS\1.20.txt';
+input risk stay;
+proc plot;
+plot stay*risk;
+proc reg;
+model stay=risk / p clm cli lackfit;
+output out=new p=pred r=resid;
+proc plot data=new;
+plot resid*pred;
+proc univariate plot;
+var resid;
+run;
